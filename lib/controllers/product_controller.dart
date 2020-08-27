@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/controllers/theme_controller.dart';
@@ -7,6 +8,10 @@ class ProductController extends GetxController {
   int get countProduct => _countProduct;
 
   void incrementar() {
+    showDialog(
+        title: 'producto añadido',
+        assets: 'assets/flare_success.flr',
+        animation: 'animation');
     showSnackBar(
         title: 'Producto Agregado',
         message: 'se agrego el producto',
@@ -16,6 +21,10 @@ class ProductController extends GetxController {
   }
 
   void disminuir() {
+    showDialog(
+        title: 'producto quitado',
+        assets: 'assets/flare_error.flr',
+        animation: 'action');
     showSnackBar(
         title: 'Producto Disminuido',
         message: 'se agrego disminuyo el producto',
@@ -36,7 +45,7 @@ class ProductController extends GetxController {
     Get.bottomSheet(GetBuilder<ThemeController>(
       init: ThemeController(),
       builder: (_) => Container(
-        color: Colors.white,
+        color: _.isThemeDark ? Colors.black : Colors.white,
         child: Wrap(
           children: <Widget>[
             ListTile(
@@ -56,6 +65,26 @@ class ProductController extends GetxController {
             ),
           ],
         ),
+      ),
+    ));
+  }
+
+  void showDialog({String title, String assets, String animation}) {
+    Get.dialog(Container(
+      child: AlertDialog(
+        title: Text(title),
+        content: Container(
+          width: 100,
+          height: 100,
+          child: FlareActor(
+            assets,
+            fit: BoxFit.cover,
+            animation: animation,
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(onPressed: () => Get.back(), child: Text('Ok'))
+        ],
       ),
     ));
   }
