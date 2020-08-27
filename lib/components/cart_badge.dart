@@ -12,7 +12,7 @@ class CartBadge extends StatelessWidget {
         IconButton(
             iconSize: 40,
             icon: Icon(Icons.shopping_cart),
-            onPressed: () => print('hola')),
+            onPressed: () => _productController.showBottomSheet()),
         Positioned(
           right: 11,
           top: 11,
