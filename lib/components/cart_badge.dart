@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx/controllers/product_controller.dart';
 
 class CartBadge extends StatelessWidget {
-  const CartBadge({Key key}) : super(key: key);
+  final ProductController _productController = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class CartBadge extends StatelessWidget {
         IconButton(
             iconSize: 40,
             icon: Icon(Icons.shopping_cart),
-            onPressed: () => print('click to cart')),
+            onPressed: () => print('hola')),
         Positioned(
           right: 11,
           top: 11,
